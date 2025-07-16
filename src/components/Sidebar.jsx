@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FaHome, FaShoppingCart, FaMoneyCheckAlt } from "react-icons/fa";
 
 const navItems = [
-    { name: "Landing", path: "/", icon: <FaHome /> },
+    { name: "Home Page", path: "/", icon: <FaHome /> },
     { name: "Cart", path: "/cart", icon: <FaShoppingCart /> },
     { name: "Checkout", path: "/checkout", icon: <FaMoneyCheckAlt /> },
 ];
