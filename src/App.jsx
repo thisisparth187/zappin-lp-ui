@@ -13,7 +13,7 @@ function App() {
 
   return (
     <Router>
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen  bg-[#fef1e7]">
         <Header username={username} toggleSidebar={() => setCollapsed(!collapsed)} />
         <div className="flex flex-1">
           <Sidebar collapsed={collapsed} />

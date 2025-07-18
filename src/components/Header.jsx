@@ -1,8 +1,14 @@
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBars, FaUser } from "react-icons/fa";
-import { FaCircleUser } from "react-icons/fa6";
-import { IoLogOut } from "react-icons/io5";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 const Header = ({ username, toggleSidebar }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
@@ -32,35 +38,21 @@ const Header = ({ username, toggleSidebar }) => {
             </div>
 
             <div className="relative" ref={dropdownRef}>
-                <button
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className="px-4 py-2 rounded hover:bg-[#DA6D1C] flex items-center gap-2 duration-200"
-                >
-                    <FaUser className="text-lg" />
-                    <span>{username}</span>
-                </button>
+                <DropdownMenu>
+                    <DropdownMenuTrigger>
+                        <div className="flex items-center gap-2 cursor-pointer">
+                            <FaUser className="text-lg" />
+                            <span>{username}</span>
+                        </div>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={() => navigate('/profile')}>Profile</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleLogout()}>Log Out</DropdownMenuItem>
+                    </DropdownMenuContent>
 
-                {dropdownOpen && (
-                    <div className="absolute right-0 mt-2 bg-white text-black rounded shadow-lg w-32 z-10">
-                        <button
-                            onClick={() => {
-                                navigate("/profile");
-                                setDropdownOpen(false);
-                            }}
-                            className="w-full px-4 py-2 hover:bg-gray-100 text-left flex items-center gap-2 duration-200"
-                        >
-                            <FaCircleUser />
-                            <span>Profile</span>
-                        </button>
-                        <button
-                            onClick={handleLogout}
-                            className="w-full px-4 py-2 hover:bg-gray-100 text-left flex items-center gap-2 duration-200"
-                        >
-                            <IoLogOut />
-                            <span>Logout</span>
-                        </button>
-                    </div>
-                )}
+                </DropdownMenu>
             </div>
         </div>
     );
